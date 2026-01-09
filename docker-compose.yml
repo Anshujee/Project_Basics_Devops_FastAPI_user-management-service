@@ -6,8 +6,10 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
+    image: user-management-service:1.0
+    container_name: user-management-app
     ports:
       - "8000:8000"
-    environment:
-      CPU_THRESHOLD: 10
-      MEMORY_THRESHOLD: 10
+    env_file:
+      - .env
+    restart: unless-stopped
