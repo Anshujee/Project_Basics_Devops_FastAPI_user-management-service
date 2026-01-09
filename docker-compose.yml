@@ -7,5 +7,5 @@ services:
     ports:
       - "8000:8000"
     environment:
-      CPU_THRESHOLD: 75
-      MEMORY_THRESHOLD: 75
+      CPU_THRESHOLD: 70
+      MEMORY_THRESHOLD: 70
