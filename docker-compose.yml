@@ -3,7 +3,9 @@ version: "3.9"
 
 services:
   app:
-    image: user-management-service:1.0
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
     ports:
       - "8000:8000"
     environment:
