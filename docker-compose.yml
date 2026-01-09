@@ -1,0 +1,11 @@
+# Compose file always stays at repo root.
+version: "3.9"
+
+services:
+  app:
+    image: user-management-service:1.0
+    ports:
+      - "8000:8000"
+    environment:
+      CPU_THRESHOLD: 75
+      MEMORY_THRESHOLD: 75
