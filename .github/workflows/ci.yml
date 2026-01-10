@@ -5,39 +5,44 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   build-and-push:
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout source code
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2️⃣ Setup Python environment
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      # 3️⃣ Install application dependencies
       - name: Install dependencies
-        run: |
-          pip install -r app/requirements.txt
+        run: pip install -r app/requirements.txt
 
+      # 4️⃣ Validate application startup
       - name: Validate app startup
-        run: |
-          python -c "import app.main"
+        run: python -c "import app.main"
 
-      - name: Build Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/user-management-service:latest \
-          -f docker/Dockerfile .
-
+      # 5️⃣ Login to Docker Hub (CD Auth Step)
       - name: Login to Docker Hub
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login \
           -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Push image to Docker Hub
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/user-management-service:latest
+      # 6️⃣ Build Docker image (SAFE single-line format)
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/user-management-service:latest -f docker/Dockerfile .
+
+      # 7️⃣ Push Docker image to Docker Hub
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/user-management-service:latest
