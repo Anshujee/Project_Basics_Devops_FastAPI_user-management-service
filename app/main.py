@@ -1,6 +1,6 @@
 import os
 from fastapi import FastAPI
-import psut
+import psutil
 import psycopg2
 
 app = FastAPI()
