@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ums-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ums
+  template:
+    metadata:
+      labels:
+        app: ums
+    spec:
+      containers:
+        - name: ums-app
+          image: anshujee/user-management-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: CPU_THRESHOLD
+              value: "40"
+            - name: MEMORY_THRESHOLD
+              value: "40"
