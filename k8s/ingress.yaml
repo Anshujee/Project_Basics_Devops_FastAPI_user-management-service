@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: myapp-ingress
 spec:
+  ingressClassName: nginx
   rules:
   - host: myapp.example.com
     http:
@@ -11,6 +12,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: myapp-service
+            name: ums-service
             port:
               number: 80
