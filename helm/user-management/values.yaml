@@ -5,6 +5,10 @@ image:
   tag: latest
   pullPolicy: Always
 
+env:
+  CPU_THRESHOLD: "40"
+  MEMORY_THRESHOLD: "40"
+
 service:
   type: ClusterIP
   port: 80
@@ -12,12 +16,9 @@ service:
 
 ingress:
   enabled: true
-  host: ums.example.com
+  className: nginx
+  host: ums.umsdevopsdemo.in
   path: /health
-  annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
-    alb.ingress.kubernetes.io/ssl-redirect: "443"
-    alb.ingress.kubernetes.io/certificate-arn: <ACM_CERT_ARN>
+  tls:
+    enabled: true
+    secretName: ums-tls
