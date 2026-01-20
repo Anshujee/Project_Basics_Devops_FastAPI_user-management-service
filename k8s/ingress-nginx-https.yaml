@@ -3,11 +3,15 @@ kind: Ingress
 metadata:
   name: ums-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - ums.umsdevopsdemo.in
+      secretName: ums-tls
   rules:
-    - host: ums.example.com
+    - host: ums.umsdevopsdemo.in
       http:
         paths:
           - path: /
