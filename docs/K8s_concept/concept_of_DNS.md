@@ -251,5 +251,5 @@ This is real DevOps experience, not failure
 ✔ Route53 hosted zone created
 ✔ Nameservers updated correctly
 ✔ dig NS shows awsdns
-✔ DNS delegation successful
+✔ DNS delegation successfull. 
 
