@@ -1,0 +1,20 @@
+replicaCount: 2
+
+image:
+  repository: anshujee/user-management-service
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  host: ums.umsdevopsdemo.in
+  path: /health
+  tls:
+    enabled: true
+    secretName: ums-tls
