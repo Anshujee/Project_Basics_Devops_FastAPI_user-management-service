@@ -18,3 +18,8 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
+          env:
+            - name: CPU_THRESHOLD
+              value: "{{ .Values.env.CPU_THRESHOLD }}"
+            - name: MEMORY_THRESHOLD
+              value: "{{ .Values.env.MEMORY_THRESHOLD }}"
