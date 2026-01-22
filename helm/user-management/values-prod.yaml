@@ -10,6 +10,10 @@ service:
   port: 80
   targetPort: 8000
 
+app:
+  cpuThreshold: "60"
+  memoryThreshold: "60"
+
 ingress:
   enabled: true
   className: nginx
