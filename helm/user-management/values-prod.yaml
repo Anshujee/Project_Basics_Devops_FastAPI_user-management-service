@@ -12,7 +12,7 @@ service:
 
 ingress:
   enabled: true
-  ingressClassName: nginx
+  className: nginx
   host: ums.umsdevopsdemo.in
   path: /health
   tls:
