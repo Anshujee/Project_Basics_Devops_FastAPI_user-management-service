@@ -11,8 +11,8 @@ service:
   targetPort: 8000
 
 app:
-  cpuThreshold: "60"
-  memoryThreshold: "60"
+  cpuThreshold: "20"
+  memoryThreshold: "20"
 
 ingress:
   enabled: true
