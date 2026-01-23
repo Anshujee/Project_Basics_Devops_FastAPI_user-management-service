@@ -20,6 +20,7 @@ spec:
             - containerPort: {{ .Values.service.targetPort }}
           env:
             - name: CPU_THRESHOLD
-              value: "{{ .Values.env.CPU_THRESHOLD }}"
+              value: "{{ .Values.app.cpuThreshold }}"
             - name: MEMORY_THRESHOLD
-              value: "{{ .Values.env.MEMORY_THRESHOLD }}"
+              value: "{{ .Values.app.memoryThreshold }}"
+
