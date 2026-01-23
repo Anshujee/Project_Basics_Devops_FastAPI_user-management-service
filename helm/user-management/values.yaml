@@ -5,9 +5,9 @@ image:
   tag: latest
   pullPolicy: Always
 
-env:
-  CPU_THRESHOLD: "40"
-  MEMORY_THRESHOLD: "40"
+app:
+  cpuThreshold: "40"
+  memoryThreshold: "40"
 
 service:
   type: ClusterIP
@@ -22,3 +22,4 @@ ingress:
   tls:
     enabled: true
     secretName: ums-tls
+
