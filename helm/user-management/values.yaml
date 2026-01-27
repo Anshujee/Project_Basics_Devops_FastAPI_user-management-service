@@ -14,6 +14,22 @@ service:
   port: 80
   targetPort: 8000
 
+# 🔴 REQUIRED FOR HPA (DEFAULTS)
+resources:
+  requests:
+    cpu: "50m"
+    memory: "64Mi"
+  limits:
+    cpu: "200m"
+    memory: "128Mi"
+
+# 🔴 REQUIRED FOR HPA (DEFAULTS)
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 60
+
 ingress:
   enabled: true
   className: nginx
@@ -22,4 +38,3 @@ ingress:
   tls:
     enabled: true
     secretName: ums-tls
-

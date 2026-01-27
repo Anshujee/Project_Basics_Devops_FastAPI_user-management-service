@@ -1,19 +1,55 @@
+# --------------------------------------------------
+# Replica Configuration (Initial State)
+# --------------------------------------------------
 replicaCount: 2
 
+# --------------------------------------------------
+# Application Image Configuration
+# --------------------------------------------------
 image:
   repository: anshujee/user-management-service
   tag: latest
   pullPolicy: Always
 
+# --------------------------------------------------
+# Kubernetes Service Configuration
+# --------------------------------------------------
 service:
   type: ClusterIP
   port: 80
   targetPort: 8000
 
+# --------------------------------------------------
+# Application Runtime Configuration
+# (Injected as Environment Variables)
+# --------------------------------------------------
 app:
   cpuThreshold: "20"
   memoryThreshold: "20"
 
+# --------------------------------------------------
+# Resource Management (MANDATORY for HPA)
+# --------------------------------------------------
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
+
+# --------------------------------------------------
+# Horizontal Pod Autoscaler (HPA)
+# --------------------------------------------------
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 50
+
+# --------------------------------------------------
+# Ingress Configuration (NGINX + HTTPS)
+# --------------------------------------------------
 ingress:
   enabled: true
   className: nginx
