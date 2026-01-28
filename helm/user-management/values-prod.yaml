@@ -24,8 +24,8 @@ service:
 # (Injected as Environment Variables)
 # --------------------------------------------------
 app:
-  cpuThreshold: "20"
-  memoryThreshold: "20"
+  cpuThreshold: "30"
+  memoryThreshold: "30"
 
 # --------------------------------------------------
 # Resource Management (MANDATORY for HPA)
